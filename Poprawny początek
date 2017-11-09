@@ -1,0 +1,65 @@
+// ConsoleApplication5.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+
+
+/*liczenie wierszy
+std::string linia;
+int licznik = 0;
+while (getline(plik, linia))
+{
+licznik++;
+}
+licznik = licznik;
+koniec liczenia wierszy */
+
+
+void glowne()
+{
+	std::ifstream plik;
+	plik.open("Plik.txt");
+	if (!plik.good())
+		std::cout << "błąd";
+
+	int tab[50][50];
+	int zmienna;
+	int i = 0;
+	int j = 0;
+
+
+		while (plik >> zmienna)
+		{
+			if (zmienna != '\54')
+			{
+				tab[j][i] = zmienna;
+				i++;
+			}
+			else
+			{
+				"\n";
+				//wstawiam funkcje sortowania :D i posortowaną tablicę przypisuję nowej tablicy
+				j++;
+			}
+
+		}
+		plik.close();
+		std::cout << tab[0][1];
+}
+	
+	
+	
+
+
+
+int main()
+{
+	
+	glowne();
+
+    return 0;
+}
+
