@@ -1,0 +1,174 @@
+// ConsoleApplication12.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <math.h>
+using namespace std;
+
+void sortowanieszybkie(int rozmiar, int t[])
+{
+	ofstream cos;
+	cos.open("wczytaj.txt");
+	//-----------------------------------------------
+
+	//-----------------------------------------------
+	for (int i = 0; i < rozmiar; i++)
+	{
+		std::cout << t[i] << " ";
+		cos << t[i] << " ";
+	}
+	cos.close();
+}
+
+void SortowaniePrzezWybor(int rozmiar, int t[])
+{
+	ofstream cos;
+	cos.open("wczytaj.txt");
+	int k;
+	int i;
+	int min;
+
+	for (i = 0; i < rozmiar - 1; i++)				//zaczynamy od początku tablicy	póżniej pomijamy poprzedzające (posortowane liczby)
+	{
+		min = i;
+		for (k = i + 1; k < rozmiar-1; k++)				//ustwiamy liczbę początkową jako następną
+		{
+			if (t[k] < t[min])						//jeśli nasza początkowa liczba nie jest najmniejsza,
+			{
+				min = k;
+			}
+
+			swap(t[min], t[k]);				//zamieniamy miejscami z najmniejszą
+		}
+	}
+
+	for (i = 0; i < rozmiar; i++)
+	{
+		std::cout << t[i] << " ";
+		cos << t[i] << " ";
+	}
+	cos.close();
+}
+
+void glowna(char sorttype)
+{
+	ifstream plik;
+	plik.open("odczytaj.txt");
+
+	string zmienna;
+	const char *c;
+	int size;
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int z = 0;
+	int a = 1;
+	int tab[50] = { 0 };
+	int t[50] = { 0 };
+
+	if (!plik.good())							//sprawdzenie poprawności pliku (czy jest, czy nie)
+		std::cout << "błąd";
+
+	while (getline(plik, zmienna))
+	{
+		c = zmienna.c_str();
+		size = zmienna.length();
+
+		while (i < size)
+		{
+
+			if (c[i] == '-')
+			{
+				a = -1;
+				i++;
+			}
+
+			if (c[i] != ' ' && c[i] != ',')
+			{
+				t[j] = c[i] - '0';
+				i++;
+				j++;
+			}
+			else
+			{
+				i--;
+				j--;
+
+				while (j >= 0)
+				{
+					tab[k] = a*t[j] * pow(10, z) + tab[k];
+					j--;
+					z++;
+				}
+
+				k++;
+				j = 0;
+				i = i + 2;
+				z = 0;
+				a = 1;
+
+			}
+
+		}
+		//=============================================================================================
+		switch (sorttype)
+		{
+		case('a'):
+		{
+			SortowaniePrzezWybor(k, tab);
+			cout << endl;
+			break;
+		}
+		case('b'):
+		{
+			//sortowanieszybkie(k, tab);
+			cout << endl;
+			break;
+		}
+		case('c'):
+		{
+			//(k, tab);
+			break;
+		}
+		default:
+			std::cout << "Nie ma takiej opcji" << std::endl;
+			break;
+		}
+
+		for (k; k >= 0; k--)
+		{
+			tab[k] = 0;
+			t[k] = 0;
+		}
+		//=============================================================================================
+
+		i = 0;
+		j = 0;
+		k = 0;
+		z = 0;
+	}
+}
+
+
+int main()
+{
+	using namespace std;
+
+	char a;
+
+	cout << "wybierz typ sortowania. Odpowiednio: " << endl;
+	cout << "a - sortowanie przez wybor" << endl;
+	cout << "b - sortowanie przez wybor" << endl;
+	cout << "c - sortowanie przez wybor" << endl;
+	cin >> a;
+
+	cout << "Posortowane liczby:" << endl;
+	glowna(a);
+
+    return 0;
+}
+
