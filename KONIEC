@@ -12,7 +12,7 @@ using namespace std;
 void wstawianie(int size, int t[])
 {
 	ofstream txt;
-	txt.open("wczytaj.txt");
+	txt.open("wczytaj.txt", ios::app);
 
 	int x;
 	int i;
@@ -41,7 +41,7 @@ void wstawianie(int size, int t[])
 void wybor(int size, int t[])
 {
 	ofstream txt;
-	txt.open("wczytaj.txt");
+	txt.open("wczytaj.txt", ios::app);
 
 	int i;
 	int j;
@@ -75,7 +75,7 @@ void glupie(int size, int t[])
 {
 
 	ofstream txt;
-	txt.open("wczytaj.txt");
+	txt.open("wczytaj.txt", ios::app);
 
 	int i = 0;
 	do
@@ -196,7 +196,7 @@ void glowna(char sorttype)
 		k = 0;
 		z = 0;
 	}
-	if (sorttype!='a'|| sorttype != 'b'|| sorttype != 'c')
+	if (sorttype!='a' && sorttype != 'b' && sorttype != 'c')
 	{
 		cout << "ekchem, cos zle wpisano";
 	}
