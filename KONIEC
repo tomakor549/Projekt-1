@@ -212,7 +212,7 @@ int main()
 	cout << "wybierz typ sortowania. Odpowiednio: " << endl;
 	cout << "a - sortowanie przez wstawianie" << endl;
 	cout << "b - sortowanie przez wybor" << endl;
-	cout << "c - sortowanie przez wybor" << endl;
+	cout << "c - sortowanie przez glupie" << endl;
 	cin >> a;
 
 	cout << "Posortowane liczby:" << endl;
