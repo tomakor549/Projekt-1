@@ -1,10 +1,7 @@
 #pragma once
+
 #include "stdafx.h"
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <algorithm>
-#include <math.h>
 
 bool Posortowane(int rozmiar, double t[]);
 
@@ -16,6 +13,6 @@ void wstawianie(int size, double t[]);
 
 void wybor(int size, double t[]);
 
-bool poprawnosc(std::string c, bool a);
+int poprawnosc(std::string c);
 
 void glowna(char sorttype, std::string wczytaj, std::string wypisz);
