@@ -1,5 +1,5 @@
 #pragma once
-
+#include "stdafx.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,7 +10,7 @@ bool Posortowane(int rozmiar, double t[]);
 
 void Tasuj(int rozmiar, double t[]);
 
-void wypisz(int size, double t[]/*, std::string wypisz*/);
+void wypisz(int size, double t[], std::string wypisz);
 
 void wstawianie(int size, double t[]);
 
@@ -18,4 +18,4 @@ void wybor(int size, double t[]);
 
 bool poprawnosc(std::string c, bool a);
 
-void glowna(char sorttype/*, std::string wczytaj, std::string wypisz*/);
+void glowna(char sorttype, std::string wczytaj, std::string wypisz);
