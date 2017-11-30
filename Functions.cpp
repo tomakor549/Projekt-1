@@ -285,8 +285,11 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 
 	std::ofstream plik1;
 	plik1.open(lel, std::ios::app);
-	std::cout << "Blednych wierszy: " << n << " na " << wiersz << std::endl;
-	plik1 << "Blednych wierszy: " << n << " na " << wiersz << std::endl;
+	std::cout << "Blednych wierszy: " << n << std::endl;
+	std::cout << "Ilość wierszy: " << wiersz << std::endl;
+	plik1 << "Blednych wierszy: " << n << std::endl;
+	plik1<< "Ilość wierszy: " << wiersz << std::endl;
+	plik.close();
 }
 
 
