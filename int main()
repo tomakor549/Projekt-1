@@ -2,26 +2,20 @@
 //
 
 #include "stdafx.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <algorithm>
-#include <math.h>
 #include "Functions.h"
 
 
-int main(/*char** argv, int argc*/)
+int main(int argc, char** argv)
 {
 
-	//if (argc < 3)
-	//{
-	//	std::cout << "za mało argumentów";
-	//	return 0;
-	//}
+	if (argc < 3)
+	{
+		std::cout << "za mało argumentów";
+		return 0;
+	}
 
-	//	auto wczytaj = argv[1];
-	//	auto wypisz = argv[2];
-	
+	auto wczytaj = argv[1];
+	auto wypisz = argv[2];
 	
 
 	char a;
@@ -32,10 +26,10 @@ int main(/*char** argv, int argc*/)
 	std::cout << "c - sortowanie zWarIowANe (nie polecam)" << std::endl;
 	std::cin >> a;
 
-	if (a == 'a' && a == 'b' && a == 'c')
+	if (a == 'a' || a == 'b' || a == 'c')
 	{
 		std::cout << "Posortowane liczby:" << std::endl;
-		glowna(a/*, wczytaj, wypisz*/);
+		glowna(a, wczytaj, wypisz);
 	}
 	else
 	{
@@ -44,4 +38,3 @@ int main(/*char** argv, int argc*/)
 
     return 0;
 }
-
