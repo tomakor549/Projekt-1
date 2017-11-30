@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Functions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,19 +18,22 @@ bool Posortowane(int rozmiar, double t[])
 
 void Tasuj(int rozmiar, double t[])
 {
-	int i, i1, i2;
+	int i;
+	int i1;
+	int i2;
 
 	for (i = 1; i <= 3 * rozmiar; i++)
 	{
-		i1 = rand() % rozmiar; i2 = rand() % rozmiar;
+		i1 = rand() % rozmiar;
+		i2 = rand() % rozmiar;
 		std::swap(t[i1], t[i2]);
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void wypisz(int size, double t[]/*, std::string wypisz*/)
+void wypisz(int size, double t[], std::string wypisz)
 {
 	std::ofstream txt;
-	txt.open(/*wypisz*/ "wypisz.txt", std::ios::app);
+	txt.open(wypisz, std::ios::app);
 
 	for (int i = 0; i < size; i++)
 	{
@@ -135,10 +137,10 @@ bool poprawnosc(std::string c, bool a)
 
 }
 
-void glowna(char sorttype, std::string wczytaj, std::string wypisz)
+void glowna(char sorttype, std::string wczytaj, std::string lel)
 {
 	std::ifstream plik;
-	plik.open("wczytaj" odczytaj.txt");
+	plik.open(wczytaj);
 
 	std::string zmienna;
 	const char *c;
@@ -237,13 +239,13 @@ void glowna(char sorttype, std::string wczytaj, std::string wypisz)
 		case('a'):
 		{
 			wstawianie(k, tab_glowna);
-			wypisz(k, tab_glowna/*, wypisz*/);
+			wypisz(k, tab_glowna, lel);
 			break;
 		}
 		case('b'):
 		{
 			wybor(k, tab_glowna);
-			wypisz(k, tab_glowna/*, wypisz*/);
+			wypisz(k, tab_glowna, lel);
 			break;
 		}
 		case('c'):
@@ -254,7 +256,7 @@ void glowna(char sorttype, std::string wczytaj, std::string wypisz)
 			{
 				Tasuj(k, tab_glowna);
 			}
-			wypisz(k, tab_glowna/*, wypisz*/);
+			wypisz(k, tab_glowna, lel);
 			break;
 		}
 		default:
