@@ -1,4 +1,10 @@
 #include "Functions.h"
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <math.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Sortowanie zwariowane
@@ -83,7 +89,7 @@ void wybor(int size, double t[])
 	}
 }
 
-bool poprawnosc(std::string c, bool a)
+int poprawnosc(std::string c)
 {
 	int j, i;
 	j = c.length();
@@ -92,9 +98,7 @@ bool poprawnosc(std::string c, bool a)
 	{
 		if (c[i] >= 58)
 		{
-			std::cout << "blad w wierszu pliku" << std::endl;
-			a = false;
-			return a;
+			return 1;
 		}
 		else
 		{
@@ -104,9 +108,7 @@ bool poprawnosc(std::string c, bool a)
 				{
 					if (c[i] < 45)
 					{
-						std::cout << "blad w wierszu pliku" << std::endl;
-						a = false;
-						return a;
+						return 1;
 					}
 				}
 			}
@@ -114,11 +116,9 @@ bool poprawnosc(std::string c, bool a)
 			{
 				if (c[i] == ' ')
 				{
-					if (c[i] == c[i] - 1)
+					if (c[i] == c[i - 1])
 					{
-						std::cout << "blad w wierszu pliku" << std::endl;
-						a = false;
-						return a;
+						return 1;
 					}
 				}
 			}
@@ -126,12 +126,11 @@ bool poprawnosc(std::string c, bool a)
 			{
 				if (c[i] == ' ')
 				{
-					std::cout << "wiersz nie moze zaczynac sie od spacji :'(" << std::endl;
-					a = false;
-					return a;
+					return 1;
 				}
 			}
 		}
+		return 0;
 	}
 	
 
@@ -149,6 +148,8 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 	int j = 0;
 	int k = 0;
 	int z = 0;
+	int n=0;
+	int wiersz = 0;
 	int po_przecinku = 0;
 	int dodatnia_ujemna = 1;
 	int wystepuje_przecinek = 0;
@@ -160,10 +161,14 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 
 	while (getline(plik, zmienna))
 	{
-		bool a=true;
-		a = poprawnosc(zmienna, a);
-		if (!a)
+		wiersz++;
+		int a=0;
+		a = poprawnosc(zmienna);
+		if (a)
+		{
+			n++;
 			continue;
+		}
 
 		c = zmienna.c_str();
 		size = zmienna.length();
@@ -276,6 +281,12 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 		j = 0;
 		k = 0;
 	}
+	plik.close();
+
+	std::ofstream plik1;
+	plik1.open(lel, std::ios::app);
+	std::cout << "Blednych wierszy: " << n << " na " << wiersz << std::endl;
+	plik1 << "Blednych wierszy: " << n << " na " << wiersz << std::endl;
 }
 
 
