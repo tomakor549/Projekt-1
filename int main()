@@ -1,0 +1,47 @@
+// ConsoleApplication12.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <math.h>
+#include "Functions.h"
+
+
+int main(/*char** argv, int argc*/)
+{
+
+	//if (argc < 3)
+	//{
+	//	std::cout << "za mało argumentów";
+	//	return 0;
+	//}
+
+	//	auto wczytaj = argv[1];
+	//	auto wypisz = argv[2];
+	
+	
+
+	char a;
+
+	std::cout << "wybierz typ sortowania. Odpowiednio: " << std::endl;
+	std::cout << "a - sortowanie przez wstawianie" << std::endl;
+	std::cout << "b - sortowanie przez wybor" << std::endl;
+	std::cout << "c - sortowanie zWarIowANe (nie polecam)" << std::endl;
+	std::cin >> a;
+
+	if (a == 'a' && a == 'b' && a == 'c')
+	{
+		std::cout << "Posortowane liczby:" << std::endl;
+		glowna(a/*, wczytaj, wypisz*/);
+	}
+	else
+	{
+		std::cout << "Cos zle wpisano";
+	}
+
+    return 0;
+}
+
