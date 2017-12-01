@@ -112,11 +112,11 @@ int poprawnosc(std::string c)
 					}
 				}
 			}
-			if (i > 0)
+			if (i < j-1)
 			{
 				if (c[i] == ' ')
 				{
-					if (c[i] == c[i - 1])
+					if (c[i] == c[i + 1])
 					{
 						return 1;
 					}
@@ -136,7 +136,7 @@ int poprawnosc(std::string c)
 
 }
 
-void glowna(char sorttype, std::string wczytaj, std::string lel)
+int glowna(char sorttype, std::string wczytaj, std::string lel)
 {
 	std::ifstream plik;
 	plik.open(wczytaj);
@@ -176,7 +176,17 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 		double *tab_pomocnicza;
 
 		tab_glowna = new double[size];
+		if (tab_glowna == NULL)
+		{
+			std::cout << "Błąd tab_glowna" << std::endl;
+			return 0;
+		}
 		tab_pomocnicza = new double[size];
+		if (tab_pomocnicza == NULL)
+		{
+			std::cout << "Błąd tab_pomocnicza" << std::endl;
+			return 0;
+		}
 		memset(tab_glowna, 0, size * sizeof(double));
 		memset(tab_pomocnicza, 0, size * sizeof(double));
 		while (i < size)
@@ -293,6 +303,5 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 	plik1 << "Blednych wierszy: " << n << std::endl;
 	plik1<< "Ilosc wierszy: " << wiersz << std::endl;
 	plik.close();
+	return 1;
 }
-
-
