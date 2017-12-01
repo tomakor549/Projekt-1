@@ -15,4 +15,4 @@ void wybor(int size, double t[]);
 
 int poprawnosc(std::string c);
 
-void glowna(char sorttype, std::string wczytaj, std::string wypisz);
+int glowna(char sorttype, std::string wczytaj, std::string wypisz);
