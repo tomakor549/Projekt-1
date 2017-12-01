@@ -29,7 +29,11 @@ int main(int argc, char** argv)
 	if (a == 'a' || a == 'b' || a == 'c')
 	{
 		std::cout << "Posortowane liczby:" << std::endl;
-		glowna(a, wczytaj, wypisz);
+		if (!glowna(a, wczytaj, wypisz))
+		{
+			std::cout << "Błąd, program przerwano";
+			return 0;
+		}
 	}
 	else
 	{
@@ -38,4 +42,3 @@ int main(int argc, char** argv)
 
     return 0;
 }
-
