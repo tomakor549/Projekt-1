@@ -130,9 +130,9 @@ int poprawnosc(std::string c)
 				}
 			}
 		}
-		return 0;
 	}
-	
+
+	return 0;
 
 }
 
@@ -148,19 +148,18 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 	int j = 0;
 	int k = 0;
 	int z = 0;
-	int n=0;
+	int n = 0;
 	int wiersz = 0;
 	int po_przecinku = 0;
 	int dodatnia_ujemna = 1;
 	int wystepuje_przecinek = 0;
-	double tab_glowna[50] = { 0 };
-	double tab_pomocnicza[50] = { 0 };
 
 	if (!plik.good())							//sprawdzenie poprawności pliku (czy jest, czy nie)
 		std::cout << "błąd";
 
 	while (getline(plik, zmienna))
 	{
+
 		wiersz++;
 		int a=0;
 		a = poprawnosc(zmienna);
@@ -173,6 +172,13 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 		c = zmienna.c_str();
 		size = zmienna.length();
 
+		double *tab_glowna;
+		double *tab_pomocnicza;
+
+		tab_glowna = new double[size];
+		tab_pomocnicza = new double[size];
+		memset(tab_glowna, 0, size * sizeof(double));
+		memset(tab_pomocnicza, 0, size * sizeof(double));
 		while (i < size)
 		{
 
@@ -236,7 +242,7 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 				wystepuje_przecinek = 0;
 
 			}
-
+			
 		}
 		//=============================================================================================
 		switch (sorttype)
@@ -270,11 +276,8 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 		}
 		}
 
-		for (k; k >= 0; k--)
-		{
-			tab_glowna[k] = 0;
-			tab_pomocnicza[k] = 0;
-		}
+		delete [] tab_glowna;
+		delete [] tab_pomocnicza;
 		//=============================================================================================
 
 		i = 0;
@@ -286,7 +289,7 @@ void glowna(char sorttype, std::string wczytaj, std::string lel)
 	std::ofstream plik1;
 	plik1.open(lel, std::ios::app);
 	std::cout << "Blednych wierszy: " << n << std::endl;
-	std::cout << "Ilość wierszy: " << wiersz << std::endl;
+	std::cout << "Ilosc wierszy: " << wiersz << std::endl;
 	plik1 << "Blednych wierszy: " << n << std::endl;
 	plik1<< "Ilosc wierszy: " << wiersz << std::endl;
 	plik.close();
