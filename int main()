@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 		if (!glowna(a, wczytaj, wypisz))
 		{
 			std::cout << "Błąd, program przerwano";
-			return 0;
+			return 2;
 		}
 	}
 	else
